@@ -2,7 +2,7 @@
 class MoviesController extends Controller{
 
     // Show all movies
-    public function movieList(){
+    public function movieList($new_id = null){
         $movieModel = $this->model('MoviesModel');
         $movies = $movieModel->getAll();
 
@@ -19,5 +19,14 @@ class MoviesController extends Controller{
         $this->view('movie', [
             'movie' => $movie
         ]);
+    }
+
+    public function addMovieForm(){
+        $this->view('add_movie_form');
+    }
+
+    public function movieProcess($name, $image, $explanation){
+        $movieModel = $this->model('MoviesModel');
+        $response = $movieModel->addMovie(array("name" => $name, "image" => $image, "explanation" => $explanation));
     }
 }

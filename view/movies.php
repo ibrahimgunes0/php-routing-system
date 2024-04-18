@@ -24,14 +24,13 @@
             </div>
         </div>
     <?php endforeach; ?>
-        <!-- Diğer filmler buraya eklenebilir -->
     </div>
 </div>
 <div class="text-center mt-5">
+    <a href="/add_movie_form" class="btn btn-success btn-lg">Add Movie</a>
     <a href="/" class="btn btn-primary btn-lg">Home Page</a>
 </div>
 
-<!-- Bootstrap JS ve jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

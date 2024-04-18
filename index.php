@@ -1,7 +1,10 @@
 <?php
 
+// Define routes with various HTTP methods (GET, POST, PUT, DELETE).
+
 //Show all error messages (If it messes something up, you can check it in the comment below.)
 // error_reporting(E_ALL);
+error_reporting(0);
 
 
 require __DIR__ . '/config/Database.php';
@@ -15,8 +18,16 @@ $_SESSION['path'] = __DIR__;
 Router::addMiddleware(new Middleware());
 
 //Define Routes
-Router::addRoute('/', function () {
-    require __DIR__ . '/view/index.php';
-});
+//Routes called with GET method
+Router::addRoute('/', function () {require __DIR__ . '/view/index.php';});
 Router::addRoute('/movies', 'MoviesController@movieList');
+Router::addRoute('/movies{url}', 'MoviesController@movieList');
 Router::addRoute('/movies/{id}', 'MoviesController@showMovie');
+Router::addRoute('/add_movie_form', 'MoviesController@addMovieForm');
+
+//Routes called with POST method
+
+//Routes called with PUT method
+Router::addRoute('/movie_process', 'MoviesController@movieProcess','put');
+//Routes called with DELETE method
+
