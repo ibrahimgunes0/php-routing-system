@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 class Router
 {
 
@@ -111,7 +111,6 @@ class Router
             }
             $a_data[$matches[1]] = $matches[2];
         }
-
         return $a_data;
     }
 

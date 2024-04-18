@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="view/css/main.css">
 
 </head>
+
 <body>
     <div class="container">
         <h1 class="text-center my-5">Add Movie</h1>
@@ -21,7 +23,7 @@
                     </div></br>
                     <div class="form-group">
                         <label for="image">Movie Image</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
+                        <input type="text" class="form-control" id="image" name="image">
                     </div></br>
                     <div class="form-group">
                         <label for="explanation">Movie Explanation</label>
@@ -33,32 +35,31 @@
         </div>
     </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.getElementById('movie_form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var formData = new FormData(this); 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
 
-    fetch('/movie_process', {
-        method: 'PUT',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        console.log(4444);
-        console.log(window.location.href = '/movies?new_id='+data);
-        window.location.href = '/movies?new_id='+data;
-    })
-    .catch(error => {
-        console.error('There was an error!', error);
-    });
-});
-</script>
+        document.getElementById('movie_form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('/movie_process', {
+                method: 'PUT',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    window.location.href = '/movies?new_id='+data;
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
+        });
+    </script>
 </body>
+
 </html>

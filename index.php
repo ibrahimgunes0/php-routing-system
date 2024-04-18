@@ -4,7 +4,7 @@
 
 //Show all error messages (If it messes something up, you can check it in the comment below.)
 // error_reporting(E_ALL);
-error_reporting(0);
+// error_reporting(0);
 
 
 require __DIR__ . '/config/Database.php';
@@ -28,6 +28,8 @@ Router::addRoute('/add_movie_form', 'MoviesController@addMovieForm');
 //Routes called with POST method
 
 //Routes called with PUT method
-Router::addRoute('/movie_process', 'MoviesController@movieProcess','put');
+Router::addRoute('/movie_process', 'MoviesController@addMovie','put');
+
 //Routes called with DELETE method
+Router::addRoute('/movie_process/{id}', 'MoviesController@deleteMovie','delete');
 

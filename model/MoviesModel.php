@@ -14,9 +14,17 @@ class MoviesModel extends Model {
         return  $this->fetchColumn("movies",["id"],[$id]);
     }
     
-    //Dynamically adds movies with incoming parameters
+    //Dynamically adds movie with incoming parameters
     public function addMovie($params)
     {
-        echo  $this->addRow("movies",$params);    
+        $id =  $this->addRow("movies",$params); 
+        echo $id;
+        return $id;   
     }
+
+     //Dynamically remove movie with incoming parameters
+     public function deleteMovie($params)
+     {
+         echo  $this->deleteRow("movies",$params);    
+     }
 }

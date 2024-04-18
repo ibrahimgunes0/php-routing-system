@@ -52,4 +52,32 @@ class Model extends Database
         $stmt->execute($values);
         return $this->db->lastInsertId();
     }
+
+    
+    public function deleteRow($table, $params) {
+        // Create separate arrays to store conditions and values
+        $conditions = array();
+        $values = array();
+        
+        // Loop through parameters to build conditions and values arrays
+        foreach ($params as $columnName => $columnValue) {
+            $conditions[] = "$columnName = ?";
+            $values[] = $columnValue;
+        }
+    
+        // Create the WHERE clause using conditions array
+        $whereClause = implode(" AND ", $conditions);
+        
+        // Create the query
+        $query = "DELETE FROM $table WHERE $whereClause";
+        
+        // Prepare and run the query
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($values);
+        
+        // Return the number of affected rows (optional)
+        return $stmt->rowCount();
+    }
+
+    
 }
