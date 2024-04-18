@@ -22,8 +22,6 @@ This is a custom PHP routing component inspired by Laravel's routing system. It 
 3. Configure your database connection in `Database.php`.
 
 
-## Usage
-
 ### Define Routes
 
 - **GET Routes**:
