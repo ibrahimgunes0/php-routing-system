@@ -1,6 +1,6 @@
 # Routing System With PHP MVC (Kolay Randevu Assessment)
 
-This is a custom PHP routing component inspired by Laravel's routing system. It allows you to define routes, handle parameterized routes, support various HTTP methods, implement middleware, and manage route grouping.
+This custom PHP Router class is designed to manage routes for an application with a specific MVC (Model-View-Controller) structure. The class supports HTTP methods (GET, POST, PUT, DELETE) and allows for middleware usage.
 
 ## Features
 
@@ -21,6 +21,27 @@ This is a custom PHP routing component inspired by Laravel's routing system. It 
     - `config/Middleware.php`: Middleware class.
 3. Configure your database connection in `Database.php`.
 
+
+## Usage
+### Basic Route Definition
+```php
+<?php
+
+require 'Router.php';
+
+$router = new Router();
+
+$router::addRoute('/hello', function () {
+    echo 'Hello, world!';
+});
+
+$router::addRoute('/hello/{name}', function ($params) {
+    echo 'Hello, ' . $params['name'] . '!';
+});
+
+?>
+
+```
 
 ### Define Routes
 
