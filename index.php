@@ -26,6 +26,7 @@ Router::addRoute('/movies/{id}', 'MoviesController@showMovie');
 Router::addRoute('/add_movie_form', 'MoviesController@addMovieForm');
 
 //Routes called with POST method
+Router::addRoute('/movies', 'MoviesController@movieList', 'POST');
 
 //Routes called with PUT method
 Router::addRoute('/movie_process', 'MoviesController@addMovie','put');
