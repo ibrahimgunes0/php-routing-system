@@ -14,6 +14,7 @@ class Middleware {
         if ($_SERVER['HTTP_ACCEPT_LANGUAGE']){
             $this->checkBrowserLanguage();
         }
+        $this->authenticate();
     }
 
     /**
@@ -31,6 +32,19 @@ class Middleware {
         if (in_array($language, $this->acceptedLanguages, true) === false){
             echo "Your browser language (".$language.") is not supported by our program.";
             die();
+        }
+    }
+
+
+    public function authenticate()
+    {
+        // Check if the request method is POST
+        if ($_SERVER['REQUEST_METHOD'] === "POST"){
+            // Check if PHP authentication credentials are provided and if they match the expected values
+            if ($_SERVER['PHP_AUTH_USER'] !== "admin" || $_SERVER['PHP_AUTH_PW'] !== "admin") {
+                echo "Authentication failed. Incorrect username or password.";
+                die();
+            }
         }
     }
 }
