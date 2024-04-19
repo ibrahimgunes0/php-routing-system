@@ -68,6 +68,31 @@ The __invoke() magic method is utilized in this class, allowing the middleware t
 
 If you want to add another controller, you can control it by calling it in the __invoke method after adding the function to the Middleware class.
 
+### Security
+#### Authentication
+Authentication function in Middleware:
+```php
+<?php
+
+ public function authenticate()
+    {
+        // Check if the request method is POST
+        if ($_SERVER['REQUEST_METHOD'] === "POST"){
+            // Check if PHP authentication credentials are provided and if they match the expected values
+            if ($_SERVER['PHP_AUTH_USER'] !== "admin" || $_SERVER['PHP_AUTH_PW'] !== "admin") {
+                echo "Authentication failed. Incorrect username or password.";
+                die();
+            }
+        }
+    }
+?>
+```
+Here, it verifies the requests received via post with 'Basic Auth'.
+
+### SQL injection
+
+I chose to use PDO for SQL injection. Because using PDO in PHP is very important to prevent SQL injection attacks. PDO provides prepared statements and parameterized queries that separate SQL code from user input. This prevents SQL injection.
+
 ### Define Routes
 
 - **GET Routes**:
