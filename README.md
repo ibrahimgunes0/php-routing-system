@@ -1,4 +1,4 @@
-# Routing System With PHP MVC (Kolay Randevu Assessment)
+# Routing System With PHP MVC
 
 This custom PHP Router class is designed to manage routes for an application with a specific MVC (Model-View-Controller) structure. The class supports HTTP methods (GET, POST, PUT, DELETE) and allows for middleware usage.
 
