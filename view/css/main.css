@@ -1,21 +1,21 @@
 .container {
     margin-top: 50px;
 }
-.film-detail {
+.movie-detail {
     background-color: #333;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-.film-detail h1,
-.film-detail h3 {
+.movie-detail h1,
+.movie-detail h3 {
     color: #fff;
 }
-.film-detail p,
-.film-detail li {
+.movie-detail p,
+.movie-detail li {
     color: #ddd;
 }
-.film-detail hr {
+.movie-detail hr {
     border-top-color: #555;
 }
 .btn-primary {
@@ -26,7 +26,7 @@
     background-color: #0056b3;
     border-color: #0056b3;
 }
-.film-image {
+.movie-image {
 width: 200px;
 height: 300px; 
 object-fit: cover; 
@@ -35,13 +35,13 @@ body {
     background-color: #121212; 
     color: #fff; 
 }
-.film {
+.movie {
     background-color: #333;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
 }
-.film-img {
+.movie-img {
 width: 200px; 
 height: 200px;
 object-fit: cover; 

@@ -20,7 +20,7 @@ This custom PHP Router class is designed to manage routes for an application wit
     - `config/Router.php`: Custom router class.
     - `config/Middleware.php`: Middleware class.
 3. Configure your database connection in `Database.php`.
-
+4. Import your database `movies.sql`.
 
 ## Usage
 ### Basic Route Definition
@@ -40,8 +40,33 @@ $router::addRoute('/hello/{name}', function ($params) {
 });
 
 ?>
-
 ```
+### Middleware
+Create an instance of the Middleware class. This can be done as follows:
+```php
+<?php
+// Create an instance of the Middleware class
+$middleware = new Middleware();
+
+// Automatically checks the browser's language
+// If the language is not supported, it outputs an error message and terminates the script
+?>
+```
+
+#### Automatic Invocation
+```php
+<?php
+
+ public function __invoke() {
+    if ($_SERVER['HTTP_ACCEPT_LANGUAGE']){
+        $this->checkBrowserLanguage();
+    }
+}
+?>
+```
+The __invoke() magic method is utilized in this class, allowing the middleware to automatically run when the object is defined. Therefore, once the Middleware instance is created, it will automatically check the browser's language.
+
+If you want to add another controller, you can control it by calling it in the __invoke method after adding the function to the Middleware class.
 
 ### Define Routes
 

@@ -1,29 +1,50 @@
 <?php
-// error_reporting(0);
+// Set error reporting to only display fatal errors and parse errors
+error_reporting(E_ERROR | E_PARSE);
 class Router
 {
 
     public static $middleware = [];
 
+    /**
+     * Parse URL
+     *
+     * Extracts the path from the request URI.
+     *
+     * @return string The parsed URL path
+     */
     public static function parse_url()
     {
-        //php file running
+        //Get the base name of the PHP file running
         $basename = basename($_SERVER['SCRIPT_NAME']);
 
-        //remove SCRIPT_NAME
+        // Remove the SCRIPT_NAME from the REQUEST_URI
         return str_replace($basename, null, $_SERVER['REQUEST_URI']);
     }
 
-
-    //It works on all paths you add using this function.
+    /**
+     * Add Middleware
+     *
+     * Adds middleware functions to the router.
+     *
+     * @param callable $middleware The middleware function to add
+     */
     public static function addMiddleware($middleware)
     {
         self::$middleware[] = $middleware;
     }
 
 
-    
 
+    /**
+     * Add Route
+     *
+     * Adds a route with specified URL, callback function, and HTTP method(s).
+     *
+     * @param string $url The URL pattern to match
+     * @param mixed $callback The callback function or controller string
+     * @param string $method The HTTP method(s) for the route (default: 'get')
+     */
     public static function addRoute($url, $callback, $method = 'get')
     {
         $method = explode('|', strtoupper($method));
@@ -63,7 +84,6 @@ class Router
                         $data = array();
                         $parameters = self::parse_raw_http_request($data);
                     }
-
                     if (file_exists($controllerFile)) {
                         require $controllerFile;
                         call_user_func_array([new $className, $controller[1]], $parameters);
@@ -77,8 +97,17 @@ class Router
 
     }
 
-    //Resource: https://stackoverflow.com/questions/5483851/manually-parse-raw-multipart-form-data-data-with-php
-    //define routes
+    /**
+     * Parse Raw HTTP Request
+     *
+     * Parses raw HTTP request data to extract form fields.
+     *
+     * @param array $a_data An array to store form data
+     *
+     * @return array The parsed form data
+     *
+     * Resource: https://stackoverflow.com/questions/5483851/manually-parse-raw-multipart-form-data-data-with-php
+     **/
     public static function parse_raw_http_request(array &$a_data)
     {
         // read incoming data
