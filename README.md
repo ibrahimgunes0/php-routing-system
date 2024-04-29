@@ -29,8 +29,6 @@ This custom PHP Router class is designed to manage routes for an application wit
 
 require 'Router.php';
 
-$router = new Router();
-
 $router::addRoute('/hello', function () {
     echo 'Hello, world!';
 });
